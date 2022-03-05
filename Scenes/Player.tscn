@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Sprites/IdleFrame01.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/Push Sprite.PNG" type="Texture" id=3]
+[ext_resource path="res://Sprites/IdleFrame03.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/IdleFrame02.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/IdleFrame04.png" type="Texture" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 1 ) ],
+"loop": false,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "ride",
+"speed": 10.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 119.0
+height = 390.0
+
+[node name="Player" type="AnimatedSprite"]
+frames = SubResource( 1 )
+animation = "ride"
+frame = 2
+playing = true
+script = ExtResource( 2 )
+
+[node name="CollideArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollideArea"]
+position = Vector2( 63, 23 )
+shape = SubResource( 2 )
+
+[node name="StartTimer" type="Timer" parent="."]
+process_mode = 0
+autostart = true
+
+[connection signal="area_entered" from="CollideArea" to="." method="_on_CollideArea_area_entered"]
+[connection signal="area_exited" from="CollideArea" to="." method="_on_CollideArea_area_exited"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
