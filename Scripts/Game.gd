@@ -97,11 +97,12 @@ func _on_Song1_measure(position):
 #		spawn_4_beat = 0
 
 func _spawn_obstacles():
+	pass
 	#if to_spawn > 0:
-	lane = randi() % 3
-	instance = obstacles.instance()
-	instance.initialize(lane)
-	add_child(instance)
+	#lane = randi() % 3
+	#instance = obstacles.instance()
+	#instance.initialize(lane)
+	#add_child(instance)
 #	if to_spawn > 1:
 #		while rand == lane:
 #			rand = randi() % 3
@@ -112,4 +113,5 @@ func _spawn_obstacles():
 
 
 func _on_ObstacleFinish_timeout():
-	_spawn_obstacles() # Replace with function body.
+	pass
+	#_spawn_obstacles() # Replace with function body.
