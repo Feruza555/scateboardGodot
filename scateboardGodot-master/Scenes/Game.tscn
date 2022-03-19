@@ -1,0 +1,72 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Sprites/possiblebackground2.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/Flesh-and-Blood-_1_.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Scenes/Song1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/Game.gd" type="Script" id=5]
+[ext_resource path="res://water.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/NotesManager.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=8]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.848485, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.964844, 0.678406, 0.886521, 1, 1, 0, 0.726563, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Environment" id=3]
+background_mode = 4
+background_color = Color( 0.937255, 0.301961, 0.494118, 1 )
+background_energy = 0.0
+ambient_light_color = Color( 0.937255, 0.301961, 0.494118, 1 )
+tonemap_mode = 3
+tonemap_exposure = 1.9
+tonemap_white = 1.9
+auto_exposure_enabled = true
+auto_exposure_scale = 0.1
+adjustment_enabled = true
+adjustment_color_correction = SubResource( 2 )
+
+[node name="Game" type="Node2D"]
+position = Vector2( 3, 0 )
+script = ExtResource( 5 )
+
+[node name="Road" type="Sprite" parent="."]
+modulate = Color( 0.901961, 0.67451, 0.2, 1 )
+position = Vector2( 160.443, 88 )
+scale = Vector2( 0.0799481, 0.0772127 )
+texture = ExtResource( 1 )
+
+[node name="NotesManager" parent="." instance=ExtResource( 7 )]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 114, 147 )
+scale = Vector2( 0.055625, 0.065 )
+frame = 0
+
+[node name="Song1" parent="." instance=ExtResource( 4 )]
+stream = ExtResource( 3 )
+volume_db = -15.0
+
+[node name="ObstacleFinish" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="ColorRect" parent="." instance=ExtResource( 6 )]
+show_behind_parent = true
+margin_left = -3.0
+margin_top = -1.0
+margin_right = 320.0
+margin_bottom = 179.0
+color = Color( 1, 1, 1, 1 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 3 )
+
+[node name="HUD" parent="." instance=ExtResource( 8 )]
+
+[connection signal="beat" from="Song1" to="NotesManager" method="_on_Song1_beat"]
+[connection signal="measure" from="Song1" to="." method="_on_Song1_measure"]
+[connection signal="timeout" from="ObstacleFinish" to="." method="_on_ObstacleFinish_timeout"]

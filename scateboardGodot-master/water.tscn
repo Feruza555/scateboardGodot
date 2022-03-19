@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Shaders/water.gdshader" type="Shader" id=1]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 1 )
+shader_param/WATER_COL = Color( 0.0392157, 0.34902, 0.780392, 1 )
+shader_param/WATER2_COL = Color( 0.0156863, 0.584314, 0.694118, 1 )
+shader_param/FOAM_COL = Color( 1, 1, 1, 1 )
+shader_param/distortion_speed = 1.5
+shader_param/tile = Vector2( 20, 20 )
+shader_param/wave_speed = 5.0
+
+[node name="ColorRect" type="ColorRect"]
+material = SubResource( 2 )
+margin_right = 123.0
+margin_bottom = 85.0
+color = Color( 1, 0.701961, 0.870588, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
