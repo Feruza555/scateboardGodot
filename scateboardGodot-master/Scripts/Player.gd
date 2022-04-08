@@ -32,16 +32,19 @@ func _unhandled_input(event):
 	if current_note != null:
 		if event.is_action_pressed("a"): 
 			if current_note.frame == 0:
+				animation = "heelflip"
 				check_score()
 			else:
 				pass  #option for player feedback, e.g. right timing but wrong key press etc.
 		elif event.is_action_pressed("w"): 
 			if current_note.frame == 1:
+				animation = "ollie"
 				check_score()
 			else: 
 				pass #option for player feedback, e.g. right timing but wrong key press etc.
 		elif  event.is_action_pressed("d"):
 			if current_note.frame == 2:
+				animation = "pop_shove_it"
 				check_score()
 			else:
 				pass  #option for player feedback, e.g. right timing but wrong key press etc.
@@ -56,12 +59,18 @@ func check_score():  #function checks accuracy of note hit and increments score
 		if perfect == true:
 			get_parent()._increment_score(Global.p_score)
 			current_note._destroy(Global.p_score)
+			if Global.punkness <= 100:
+				Global._increment_punkness(3)
 		elif good == true:
 			get_parent()._increment_score(Global.g_score)
 			current_note._destroy(Global.g_score)
+			if Global.punkness <= 100:
+				Global._increment_punkness(2)
 		elif okay == true:
 			get_parent()._increment_score(Global.o_score)
 			current_note._destroy(Global.o_score)
+			if Global.punkness <= 100:
+				Global._increment_punkness(1)
 
 
 func _physics_process(delta):
@@ -86,7 +95,8 @@ func _on_CollideArea_area_exited(area):
 		current_obstacle = null
 
 func _on_StartTimer_timeout():
-	frame = 1
+	animation = "ride"
+	#frame = 1
 
 func _on_PerfectHitArea_area_entered(area):
 	if area.is_in_group("note"):

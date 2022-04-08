@@ -53,7 +53,7 @@ func destroy():
 	hit = true
 	$Node2D/Label.text = "Finished"
 	$Node2D/Label.modulate = Color("f6d6bd")
-	
+	# Global._increment_punkness(-5)   this had a freakout, took the entire bar down. could be bc its under process for player?
 	
 func _on_Timer_timeout():
 	queue_free() # Replace with function body.

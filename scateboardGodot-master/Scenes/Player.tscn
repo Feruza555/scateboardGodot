@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Sprites/IdleFrame01.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
@@ -6,6 +6,20 @@
 [ext_resource path="res://Sprites/IdleFrame03.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/IdleFrame02.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/IdleFrame04.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/TrickAnimations/heelflip/HeelFlipFrame01.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/TrickAnimations/heelflip/HeelFlipFrame02.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/TrickAnimations/ollie/OllieFrame03.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/TrickAnimations/pop_shove_it/PopShoveItFrame02.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/TrickAnimations/ollie/OllieFrame01.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/TrickAnimations/pop_shove_it/PopShoveItFrame03.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/TrickAnimations/pop_shove_it/PopShoveItFrame04.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/TrickAnimations/pop_shove_it/PopShoveItFrame05.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/TrickAnimations/pop_shove_it/PopShoveItFrame06.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/TrickAnimations/heelflip/HeelFlipFrame03.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/TrickAnimations/pop_shove_it/PopShoveItFrame01.png" type="Texture" id=17]
+[ext_resource path="res://Sprites/TrickAnimations/heelflip/HeelFlipFrame04.png" type="Texture" id=18]
+[ext_resource path="res://Sprites/TrickAnimations/heelflip/HeelFlipFrame05.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/TrickAnimations/ollie/OllieFrame02.png" type="Texture" id=20]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -14,10 +28,25 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 16 ), ExtResource( 18 ), ExtResource( 19 ) ],
+"loop": false,
+"name": "heelflip",
+"speed": 17.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": false,
+"name": "pop_shove_it",
+"speed": 15.0
+}, {
 "frames": [ ExtResource( 1 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "ride",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 20 ), ExtResource( 9 ) ],
+"loop": false,
+"name": "ollie",
+"speed": 7.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -35,8 +64,7 @@ extents = Vector2( 73, 422.75 )
 
 [node name="Player" type="AnimatedSprite"]
 frames = SubResource( 1 )
-animation = "ride"
-frame = 3
+frame = 1
 playing = true
 script = ExtResource( 2 )
 

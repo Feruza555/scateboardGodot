@@ -9,7 +9,7 @@ var okay = 0
 var missed = 0
 
 
-var bpm = 60
+var bpm = 100
 
 var song_position = 0.0
 var song_position_in_beats = 0
@@ -29,7 +29,7 @@ var instance
 
 func _ready():
 	randomize()
-	$Song1.play_with_beat_offset(1) 
+	$Song1.play_with_beat_offset(4) 
 
 
 
@@ -143,5 +143,6 @@ func _increment_score(by):
 
 	Global.score += by * Global.combo  #think about changing this number, Jimbo
 	Global.HUD._set_score()
-	
+
+
 	

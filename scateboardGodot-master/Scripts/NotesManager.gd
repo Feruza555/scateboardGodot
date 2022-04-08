@@ -24,7 +24,7 @@ func _ready() -> void:
 func select_note(beat):
 	#get next note in chart list
 	if beat >= Global.chart_list.size():
-		return(true) # 
+		return(true) # keeps the game from crashing by trying to access an array index past what the chart has 
 	var next_chart = Global.chart_list[beat]
 	
 	var the_lane = next_chart[0]
@@ -71,5 +71,10 @@ func spawn_note(lane, note):
 func _on_Song1_beat(position):
 	var end_song = select_note(position)
 	if end_song:
-		print("You did it jabroni")  #here it would kick you back to menu screen
+		 $EndTimer.start() #here it would kick you back to menu screen
 
+
+
+func _on_EndTimer_timeout():
+	print("You did it jabroni")
+	get_tree().change_scene("res://Scenes/End.tscn") 

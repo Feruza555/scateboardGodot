@@ -24,8 +24,9 @@ func _ready():
 func _physics_process(delta):
 	if !hit:
 		position.y += speed * delta
-		if position.y > 700:
+		if position.y > 200:
 			queue_free()
+			Global._increment_punkness(-5)
 			#get_parent().reset_combo()
 
 
@@ -40,11 +41,11 @@ func _destroy(score):
 	$DestructionTimer.start()
 	hit = true
 	if score == 3:
-		pass	#place the "Perfect" label here
+		pass	#place the "Perfect" label popping up here
 	elif score == 2: 
-		pass	#place the "Good" label here
+		pass	#place the "Good" label popping up here
 	elif score == 1:
-		pass	#place the "Okay" label here
+		pass	#place the "Okay" label popping up here
 		
 
 

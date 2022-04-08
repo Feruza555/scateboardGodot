@@ -2,6 +2,8 @@ extends Control
 
 onready var score_label = $Score
 onready var TweScore = $TweScore
+onready var Punk = $PunkOMeter
+onready var TwePunkness = $TwePunkness
 
 var cur_score = 0
 
@@ -27,3 +29,13 @@ func _tween_score():
 	TweScore.interpolate_property(score_label, "rect_scale", S0, S1, dur, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
 	TweScore.interpolate_property(score_label, "rect_scale", S1, S0, dur, Tween.TRANS_BOUNCE, Tween.EASE_OUT, dur)
 	TweScore.start()
+
+
+
+func _tween_punkness():
+	var V0 = Punk.value
+	var V1 = Global.punkness
+	var dur = 0.2
+	TwePunkness.interpolate_property(Punk, "value", V0, V1, dur, Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT)
+	TwePunkness.start()
+	
